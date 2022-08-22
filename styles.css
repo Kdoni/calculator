@@ -8,15 +8,49 @@ body {
     height: 60vh;
     position: absolute;
     top: 50%;
+    padding: 5%;
     left: 50%;
     transform: translate(-50%, -50%);
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(6, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-template-areas:
+        "screen screen screen screen"
+        "number number number operator "
+        "number number number operator"
+        "number number number operator"
+        "number operator operator operator"
 }
 
 .grid-item {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.screen {
+    grid-area: "screen";
+    background-color: aquamarine;
+    grid-column-start: 1;
+    grid-column-end: 5;
+    border-radius: 10px;
+    margin-bottom: 3%;
+
+
+}
+
+.operator {
+    grid-area: "operator";
+    background-color: orange;
+    border-radius: 30%;
+    margin: 10%;
+
+}
+
+
+.number {
+    grid-area: "number";
+    background-color: skyblue;
+    border-radius: 30%;
+    margin: 10%;
 }
