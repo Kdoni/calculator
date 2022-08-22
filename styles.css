@@ -1,0 +1,22 @@
+body {
+    height: 100vh;
+}
+
+.grid-container {
+    background-color: lightblue;
+    width: 50vh;
+    height: 60vh;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+}
+
+.grid-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

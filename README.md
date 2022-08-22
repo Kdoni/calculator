@@ -1,0 +1,1 @@
+A simple calculator project inspired by "The Odin Project" on its Fundamentals course.
