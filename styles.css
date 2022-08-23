@@ -61,8 +61,17 @@ body {
 .display {
     margin-right: 3%;
     margin-top: 10%;
+    display: inline;
+    margin: none;
 }
 
 p {
     font-weight: 800;
+}
+
+.value {
+    position: absolute;
+    right: 1.8em;
+    top: 0.6em;
+    display: none;
 }
