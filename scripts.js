@@ -1,6 +1,6 @@
 const calculations = {
-    "+": function (a, b) {
-        return a + b;
+    addition: function (a) {
+        return a.reduce((a, b) => a + b);
     },
     division: function (a, b) {
         if (b === 0) {
@@ -25,16 +25,19 @@ let quickMath = document.getElementsByClassName("operator");
 let equals = document.querySelector(".equals");
 let addition = document.querySelector(".addition");
 let value = document.querySelector(".value");
+let clickable = document.getElementsByClassName("push");
+console.log(clickable)
+
 
 
 //Clicking the number//
 
 let result = "";
-for (let i = 0; i < numbers.length; i++) {
-    numbers[i].addEventListener("click", function (e) {
-        result += numbers[i].id;
+for (let i = 0; i < clickable.length; i++) {
+    clickable[i].addEventListener("click", function (e) {
+        result += clickable[i].id;
         value.style.display = "block";
-        value.textContent = result;
+        value.textContent = displayResult();
         return display.textContent = result;
     })
 }
@@ -43,13 +46,23 @@ for (let i = 0; i < numbers.length; i++) {
 
 //clicking the operators//
 
-for (let i = 0; i < quickMath.length; i++) {
-    quickMath[i].addEventListener("click", function (e) {
-        result += quickMath[i].id;
-        return display.textContent = result;
-    })
+// for (let i = 0; i < quickMath.length; i++) {
+//     quickMath[i].addEventListener("click", function (e) {
+//         result += quickMath[i].id;
+//         return display.textContent = result;
+//     })
+// };
+
+function displayResult() {
+    let currentNumber = parseInt(result);
+    for (let i = 0; i < quickMath.length; i++) {
+        quickMath[i].addEventListener("click", function (e) {
+            currentNumber = display.textContent.length - 1;
+        })
+    }
+    return currentNumber;
 };
 
-addition.addEventListener("click", function (e) {
-    console.log(display.textContent);
-})
+// equals.addEventListener("click", function (e) {
+
+// });
