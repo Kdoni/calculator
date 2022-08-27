@@ -11,6 +11,10 @@ body {
     top: 50%;
     padding: 5%;
     left: 50%;
+    border-top-left-radius: 10%;
+    border-top-right-radius: 10%;
+    border-bottom-left-radius: 5%;
+    border-bottom-right-radius: 5%;
     transform: translate(-50%, -50%);
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -62,6 +66,8 @@ body {
 .display {
     margin-right: 3%;
     margin-top: 0;
+    max-width: 20ch;
+    overflow: hidden;
 }
 
 p {
@@ -73,9 +79,25 @@ p {
     display: none;
     margin: 0;
     margin-right: 3%;
+    max-width: 20ch;
+    overflow: hidden;
 
 }
 
 button {
     -webkit-user-drag: none;
+    border-color: black;
+    cursor: pointer;
+
+}
+
+button:disabled {
+    color: black;
+    border-color: black;
+}
+
+.point {
+    background-color: orange;
+    border-radius: 30%;
+    margin: 10%;
 }
