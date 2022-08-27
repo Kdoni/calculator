@@ -66,6 +66,7 @@ body {
 
 p {
     font-weight: 800;
+    user-select: none;
 }
 
 .value {
@@ -73,4 +74,8 @@ p {
     margin: 0;
     margin-right: 3%;
 
+}
+
+button {
+    -webkit-user-drag: none;
 }

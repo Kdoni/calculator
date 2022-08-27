@@ -20,13 +20,11 @@ function calculations(a) {
     let splitted = a.split("");
     splitted.pop();
     let joined = splitted.join("");
-    // let additive = joined.slice(joined.lastIndexOf("+") + 1);
-    // let negative = joined.slice(joined.lastIndexOf("-"));
-    if (!joined.includes("+") && !joined.includes("-") && !joined.includes("x") && !joined.includes("÷")) {
+    if (!joined.includes("+") && !joined.includes("-") && !joined.includes("x") && !joined.includes("÷") && !joined.includes("=")) {
         sum = parseInt(joined);
         return sum;
     }
-    let numbers = joined.split(/[\+\-x\/÷]/g);
+    let numbers = joined.split(/[\+\-x\/÷|=]/g);
     let operators = joined.split(/[0-9]+/).filter(word => word !== "");
     if (operators[0] === "+") {
         accumulator = Number(numbers[0]) + Number(numbers[1]);
@@ -38,7 +36,7 @@ function calculations(a) {
         accumulator = (Number(numbers[0]) / Number(numbers[1])).toFixed(2);
         if (Number(numbers[1] === "0")) {
             return "cringe...";
-        }
+        };
     }
     for (let i = 2; i < numbers.length; i++) {
         if (operators[i - 1] === "+") {
@@ -93,10 +91,16 @@ for (let i = 0; i < clickable.length; i++) {
 for (let i = 0; i < quickMath.length; i++) {
     quickMath[i].addEventListener("click", function (e) {
         currentValue = display.textContent;
-        if (currentValue[currentValue.length - 1] === "+" || currentValue[currentValue.length - 1] === "-" || currentValue[currentValue.length - 1] === "x" || currentValue[currentValue.length - 1] === "÷") {
+        if (currentValue[currentValue.length - 1] === "+" || currentValue[currentValue.length - 1] === "-" || currentValue[currentValue.length - 1] === "x" || currentValue[currentValue.length - 1] === "÷" ||
+            currentValue[currentValue.length - 1] === "=") {
             value.style.display = "block";
             value.textContent = calculations(currentValue);
-            // console.log(sum);
         }
     })
 };
+
+equals.addEventListener("click", (e) => {
+    value.style.marginBottom = "20px";
+    value.style.fontSize = "1.5em";
+    display.style.display = "none";
+})
