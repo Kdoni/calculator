@@ -37,6 +37,8 @@ body {
 
 .screen {
     grid-area: "screen";
+    overflow: hidden;
+    position: relative;
     background-color: aquamarine;
     grid-column-start: 1;
     grid-column-end: 5;
@@ -86,7 +88,6 @@ button {
     border-color: black;
     cursor: pointer;
     transition: 0.5s;
-
 }
 
 button:disabled {
@@ -99,14 +100,18 @@ button:disabled {
     transform: scale(1.1);
 }
 
-.operator:hover {
+.operator:hover,
+.point:hover {
     transform: scale(1.1);
     background-color: hsl(39, 100%, 80%);
 }
 
-button:active {
+.number:active,
+.point:active,
+.operator:active {
     transform: scale(0.7);
 }
+
 
 .point {
     background-color: orange;
@@ -114,7 +119,25 @@ button:active {
     margin: 10%;
 }
 
-.point:hover {
-    transform: scale(1.1);
-    background-color: hsl(39, 100%, 80%);
+.clear {
+    position: absolute;
+    background-color: red;
+    align-self: flex-start;
+    justify-self: flex-end;
+    top: 0;
+    height: 50%;
+    width: 10%;
+    border: none;
+    border-bottom: 0.5px solid black;
+}
+
+.mistake {
+    position: absolute;
+    background-color: red;
+    align-self: flex-start;
+    height: 50%;
+    width: 10%;
+    border: none;
+    border-top: 0.5px solid black;
+
 }
