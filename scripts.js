@@ -25,7 +25,6 @@ function calculations(a) {
     }
     let numbers = joined.split(/[\+\-x\/÷|=]/g);
     let operators = joined.split(/\d+\.\d+|\d+/g).filter(word => word !== "");
-    console.log(operators);
     if (operators[0] === "+") {
         accumulator = Number(numbers[0]) + Number(numbers[1]);
     } else if (operators[0] === "-") {
@@ -89,6 +88,7 @@ function enablePoint() {
 }
 
 disableOperator();
+disablePoint();
 
 //General clickable event
 
@@ -101,6 +101,7 @@ for (let i = 0; i < clickable.length; i++) {
         value.style.fontSize = "0";
         if (clickable[i].classList.contains("number")) {
             enableOperator();
+            enablePoint();
         } else if (clickable[i].classList.contains("operator")) {
             disableOperator();
             enablePoint();
@@ -109,8 +110,7 @@ for (let i = 0; i < clickable.length; i++) {
             result += clickable[i].id;
             display.textContent = result;
         };
-
-    })
+    });
 };
 
 //Clicking on an operator.
@@ -144,20 +144,43 @@ point.addEventListener("click", (e) => {
 //Keyboard support//
 
 document.addEventListener("keypress", (e) => {
+    if (e.key === "/" && quickMath[1].disabled === false) {
+        [...quickMath].forEach(word => {
+            word.disabled = true;
+        });
+        result += "÷";
+        display.textContent = result;
+        return;
+    }
     for (let i = 0; i < numbers.length; i++) {
         if (e.key === numbers[i].id) {
             if (display.textContent.length < 20) {
                 result += e.key;
                 display.textContent = result;
+                [...quickMath].forEach(word => {
+                    word.disabled = false;
+                });
             };
         };
     };
     for (let i = 0; i < quickMath.length; i++) {
-        if (e.key === quickMath[i].id) {
+        if (e.key === quickMath[i].id && quickMath[i].disabled === false) {
             if (display.textContent.length < 20) {
                 result += e.key;
                 display.textContent = result;
+                point.disabled = false;
+                [...quickMath].forEach(word => {
+                    word.disabled = true;
+                });
             };
         };
+    };
+    if (e.key === "." && point.disabled === false) {
+        result += e.key;
+        display.textContent = result;
+        point.disabled = true;
+        [...quickMath].forEach(word => {
+            word.disabled = true;
+        });
     };
 });
