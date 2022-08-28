@@ -94,6 +94,16 @@ button:disabled {
     border-color: black;
 }
 
+.number:hover {
+    background-color: hsl(197, 71%, 80%);
+    transform: scale(1.1);
+}
+
+.operator:hover {
+    transform: scale(1.1);
+    background-color: hsl(39, 100%, 80%);
+}
+
 button:active {
     transform: scale(0.7);
 }
@@ -102,4 +112,9 @@ button:active {
     background-color: orange;
     border-radius: 30%;
     margin: 10%;
+}
+
+.point:hover {
+    transform: scale(1.1);
+    background-color: hsl(39, 100%, 80%);
 }

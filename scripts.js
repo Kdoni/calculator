@@ -137,4 +137,4 @@ equals.addEventListener("click", (e) => {
 point.addEventListener("click", (e) => {
     disableOperator();
     disablePoint();
-})
+});
