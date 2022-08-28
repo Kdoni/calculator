@@ -105,11 +105,13 @@ for (let i = 0; i < clickable.length; i++) {
             disableOperator();
             enablePoint();
         }
-        result += clickable[i].id;
-        display.textContent = result;
-    })
-}
+        if (display.textContent.length < 20) {
+            result += clickable[i].id;
+            display.textContent = result;
+        };
 
+    })
+};
 
 //Clicking on an operator.
 
@@ -137,4 +139,25 @@ equals.addEventListener("click", (e) => {
 point.addEventListener("click", (e) => {
     disableOperator();
     disablePoint();
+});
+
+//Keyboard support//
+
+document.addEventListener("keypress", (e) => {
+    for (let i = 0; i < numbers.length; i++) {
+        if (e.key === numbers[i].id) {
+            if (display.textContent.length < 20) {
+                result += e.key;
+                display.textContent = result;
+            };
+        };
+    };
+    for (let i = 0; i < quickMath.length; i++) {
+        if (e.key === quickMath[i].id) {
+            if (display.textContent.length < 20) {
+                result += e.key;
+                display.textContent = result;
+            };
+        };
+    };
 });
