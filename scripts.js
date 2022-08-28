@@ -17,13 +17,16 @@ let sum = 0;
 
 function calculations(a) {
     let splitted = a.split("");
-    splitted.pop();
+    // splitted.pop();
     let joined = splitted.join("");
-    if (!joined.includes("+") && !joined.includes("-") && !joined.includes("x") && !joined.includes("÷") && !joined.includes("=")) {
-        sum = Number(joined);
-        return sum;
-    }
+    // if (!joined.includes("+") && !joined.includes("-") && !joined.includes("x") && !joined.includes("÷") && !joined.includes("=")) {
+    //     sum = Number(joined);
+    //     return sum;
+    // }
     let numbers = joined.split(/[\+\-x\/÷|=]/g);
+    if (Number(numbers[numbers.length - 1]) % 1 !== 0) {
+        point.disabled = true
+    }
     let operators = joined.split(/\d+\.\d+|\d+/g).filter(word => word !== "");
     if (operators[0] === "+") {
         accumulator = Number(numbers[0]) + Number(numbers[1]);
@@ -100,6 +103,7 @@ for (let i = 0; i < clickable.length; i++) {
         value.style.marginBottom = "0";
         value.style.fontSize = "0";
         if (clickable[i].classList.contains("number")) {
+
             enableOperator();
             enablePoint();
         } else if (clickable[i].classList.contains("operator")) {
@@ -110,6 +114,12 @@ for (let i = 0; i < clickable.length; i++) {
             result += clickable[i].id;
             display.textContent = result;
         };
+        let splitted = display.textContent.split("");
+        let joined = splitted.join("");
+        let numbers = joined.split(/[\+\-x\/÷|=]/g);
+        if (Number(numbers[numbers.length - 1]) % 1 !== 0) {
+            point.disabled = true
+        }
     });
 };
 
@@ -119,6 +129,7 @@ for (let i = 0; i < quickMath.length; i++) {
     quickMath[i].addEventListener("click", function (e) {
         currentValue = display.textContent;
         enableNumber();
+        disablePoint();
         if (currentValue[currentValue.length - 1] === "+" || currentValue[currentValue.length - 1] === "-" || currentValue[currentValue.length - 1] === "x" || currentValue[currentValue.length - 1] === "÷" ||
             currentValue[currentValue.length - 1] === "=") {
             value.style.display = "block";
