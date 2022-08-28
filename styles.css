@@ -139,5 +139,12 @@ button:disabled {
     width: 10%;
     border: none;
     border-top: 0.5px solid black;
-
+    cursor: pointer;
 }
+
+.mistake:hover,
+.clear:hover {
+    font-size: 1.5em;
+}
+
+;

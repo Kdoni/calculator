@@ -8,6 +8,8 @@ let addition = document.querySelector(".addition");
 let value = document.querySelector(".value");
 let clickable = document.getElementsByClassName("push");
 let point = document.querySelector(".point");
+let clear = document.querySelector(".clear");
+let mistake = document.querySelector(".mistake");
 
 
 let accumulator = 0;
@@ -138,6 +140,8 @@ for (let i = 0; i < quickMath.length; i++) {
     })
 };
 
+//Pressing "="//
+
 equals.addEventListener("click", (e) => {
     result = calculations(currentValue);
     value.style.marginBottom = "20px";
@@ -147,6 +151,7 @@ equals.addEventListener("click", (e) => {
     disableNumber();
 });
 
+//Pressing the dot (.)//
 point.addEventListener("click", (e) => {
     disableOperator();
     disablePoint();
@@ -154,7 +159,7 @@ point.addEventListener("click", (e) => {
 
 //Keyboard support//
 
-document.addEventListener("keypress", (e) => {
+document.addEventListener("keydown", (e) => {
     if (e.key === "/" && quickMath[1].disabled === false) {
         [...quickMath].forEach(word => {
             word.disabled = true;
@@ -210,5 +215,39 @@ document.addEventListener("keypress", (e) => {
         display.style.display = "none";
         enableOperator();
         disableNumber();
+    };
+    if (e.key === "Backspace") {
+        oopsie();
     }
 });
+
+//Pressing the clear button//
+
+function reset() {
+    value.style.display = "none";
+    display.style.display = "block";
+    display.textContent = 0;
+    result = "";
+    disableOperator();
+    enableNumber();
+    disablePoint()
+}
+
+clear.addEventListener("click", reset);
+
+//correcting mistakes
+
+function oopsie() {
+    if (result !== "") {
+        if (result.length === 1) {
+            display.textContent = "0";
+            result = "";
+            return;
+        }
+        let answer = result.substring(0, result.length - 1);
+        result = answer;
+        display.textContent = result;
+    };
+};
+
+mistake.addEventListener("click", oopsie);
