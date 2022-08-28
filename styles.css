@@ -64,36 +64,38 @@ body {
 }
 
 .display {
-    margin-right: 3%;
+    margin-right: 3.6%;
     margin-top: 0;
-    max-width: 20ch;
-    overflow: hidden;
 }
 
 p {
     font-weight: 800;
     user-select: none;
+    max-width: 20ch;
+    min-width: 1ch;
 }
 
 .value {
     display: none;
     margin: 0;
     margin-right: 3%;
-    max-width: 20ch;
-    overflow: hidden;
-
 }
 
 button {
     -webkit-user-drag: none;
     border-color: black;
     cursor: pointer;
+    transition: 0.5s;
 
 }
 
 button:disabled {
     color: black;
     border-color: black;
+}
+
+button:active {
+    transform: scale(0.7);
 }
 
 .point {

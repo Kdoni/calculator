@@ -16,8 +16,6 @@ let sum = 0;
 //Basic calculations//
 
 function calculations(a) {
-    let numberArray = [];
-    let operatorArray = [];
     let splitted = a.split("");
     splitted.pop();
     let joined = splitted.join("");
