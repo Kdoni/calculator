@@ -217,6 +217,8 @@ document.addEventListener("keydown", (e) => {
         disableNumber();
     };
     if (e.key === "Backspace") {
+        disableOperator();
+        disablePoint()
         oopsie();
     }
 });
@@ -238,8 +240,12 @@ clear.addEventListener("click", reset);
 //correcting mistakes
 
 function oopsie() {
+    disableOperator();
+    disablePoint();
     if (result !== "") {
         if (result.length === 1) {
+            disableOperator();
+            disablePoint();
             display.textContent = "0";
             result = "";
             return;
