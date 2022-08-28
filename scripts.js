@@ -165,12 +165,19 @@ document.addEventListener("keypress", (e) => {
     }
     for (let i = 0; i < numbers.length; i++) {
         if (e.key === numbers[i].id) {
+            point.disabled = false;
             if (display.textContent.length < 20) {
                 result += e.key;
                 display.textContent = result;
                 [...quickMath].forEach(word => {
                     word.disabled = false;
                 });
+                let splitted = display.textContent.split("");
+                let joined = splitted.join("");
+                let numbers = joined.split(/[\+\-x\/÷|=]/g);
+                if (Number(numbers[numbers.length - 1]) % 1 !== 0) {
+                    point.disabled = true
+                }
             };
         };
     };
@@ -179,7 +186,7 @@ document.addEventListener("keypress", (e) => {
             if (display.textContent.length < 20) {
                 result += e.key;
                 display.textContent = result;
-                point.disabled = false;
+                point.disabled = true;
                 [...quickMath].forEach(word => {
                     word.disabled = true;
                 });
@@ -194,4 +201,14 @@ document.addEventListener("keypress", (e) => {
             word.disabled = true;
         });
     };
+    if (e.key === "=") {
+        result = calculations(display.textContent);
+        value.style.display = "block";
+        value.style.marginBottom = "20px";
+        value.style.fontSize = "1.5em";
+        value.textContent = result;
+        display.style.display = "none";
+        enableOperator();
+        disableNumber();
+    }
 });
